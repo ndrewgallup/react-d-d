@@ -1,22 +1,24 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { getClassList } from '../../services/api-calls'
+import { Link } from 'react-router-dom'
 
 const ClassList = (props) => {
-  const [results, setResults] = useState([])
+  const [classes, setClasses] = useState([])
 
   useEffect(() => {
     getClassList()
-    .then(classData => setResults(classData.results))
-  })
+    .then(classData => setClasses(classData.results))
+  }, [])
 
   return (
     <>
       <div>
         <h3>Class List</h3>
         <div className='icon-container'>
-          {results.map((classTitle) => (
-            <div id='classDiv' key={classTitle.index}>
+          {classes.map((classTitle) => (
+            <Link to="/class" state={{classTitle}} key={classTitle.index}>
+            <div id='classDiv'>
               <img 
                 style= {{ width: '100px', height: '100px'}}
                 src={`/images/${classTitle.name}.svg`}
@@ -24,6 +26,7 @@ const ClassList = (props) => {
               />
               {classTitle.name}
             </div>
+            </Link>
           ))}
         </div>
       </div>
