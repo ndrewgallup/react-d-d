@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-// Import the function to get the class details via the API
 import { getDetails } from "../../services/api-calls";
 
 
@@ -11,7 +10,7 @@ const ClassDetails = (props) => {
   useEffect(()=> {
     getDetails(location.state.classTitle.url)
     .then(classDetails => setClassDetails(classDetails))
-  }, [])
+  })
   
   return (
     <>
