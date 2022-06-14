@@ -13,8 +13,19 @@ const SpellSearch = (props) => {
 
   return (
     <>
-    <h3>Spells</h3>
-    <SearchForm handleSpellSearch={handleSpellSearch} />
+      <h3>Spells</h3>
+      <SearchForm handleSpellSearch={handleSpellSearch} />
+      {spells.length ?
+        <>
+          {spells.map(spell => 
+            <div key={spell.index}>
+              {spell.name}
+            </div>
+          )}
+        </>
+        :
+        <h3>Search for a spell!</h3>
+      }
     </>
   )
 }
